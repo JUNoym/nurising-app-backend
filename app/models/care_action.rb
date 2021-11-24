@@ -1,0 +1,2 @@
+class CareAction < ApplicationRecord
+end
