@@ -14,6 +14,7 @@ ActiveRecord::Schema.define(version: 2021_11_22_231447) do
 
   create_table "excretions", force: :cascade do |t|
     t.string "name"
+    t.string "time"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

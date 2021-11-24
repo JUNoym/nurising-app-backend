@@ -4,6 +4,8 @@ class Api::V1::ExcretionController < ApplicationController
         render json: user
     end
 
+  
+
     def show
         user = Excretion.find(params[:id])
         render json: user
@@ -35,10 +37,29 @@ class Api::V1::ExcretionController < ApplicationController
         end
    end
 
+   def destroy_all
+        if Excretion.destroy_all
+        head :no_content
+        
+        else
+        render json: { error: "削除に失敗" }, status: 422
+        end
+   end
+
+   def push_time
+    render json: {message: "ok"}
+    time = Excretion.new(user_params)
+    if time.save
+        render json: time
+    else
+        render json: {message: "エラー出てるよ"}
+    end
+   end
+
    
         private
 
         def user_params
-            params.require(:excretion).permit(:name)
+            params.require(:excretion).permit(:name,:time)
         end
 end
