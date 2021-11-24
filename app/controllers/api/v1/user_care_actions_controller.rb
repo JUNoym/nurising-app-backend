@@ -1,4 +1,11 @@
 class Api::V1::UserCareActionsController < ApplicationController
+  def index
+    users = User.all
+    res = users.map{ |user|
+      {"user_name"=>user.name,"user_id"=>user.id,"care_actions"=>user.care_action}
+    }
+    render json: res
+  end
   def create
     care_action = CareAction.find(params[:care_action_id])
     puts care_action
