@@ -1,18 +1,18 @@
 class Api::V1::ExcretionController < ApplicationController
     def index
-        user = Excretion.all
+        user = User.all
         render json: user
     end
 
   
 
     def show
-        user = Excretion.find(params[:id])
+        user = User.find(params[:id])
         render json: user
     end
 
    def create
-        user = Excretion.new(user_params)
+        user = User.new(user_params)
         if user.save
             render json: user
         else
@@ -21,7 +21,7 @@ class Api::V1::ExcretionController < ApplicationController
    end
 
    def update
-        user = Excretion.find(params[:id])
+        user = User.find(params[:id])
         if user.update(user_params)
             render json: user
         else
@@ -30,7 +30,7 @@ class Api::V1::ExcretionController < ApplicationController
    end
 
    def destroy
-        if Excretion.destroy(params[:id])
+        if User.destroy(params[:id])
             head :no_content
         else
             render json: {message: "エラー出てるよ"}
@@ -38,7 +38,7 @@ class Api::V1::ExcretionController < ApplicationController
    end
 
    def destroy_all
-        if Excretion.destroy_all
+        if User.destroy_all
         head :no_content
         
         else
@@ -48,7 +48,7 @@ class Api::V1::ExcretionController < ApplicationController
 
    def push_time
     render json: {message: "ok"}
-    time = Excretion.new(user_params)
+    time = User.new(user_params)
     if time.save
         render json: time
     else
@@ -57,9 +57,9 @@ class Api::V1::ExcretionController < ApplicationController
    end
 
    
-        private
+    private
 
-        def user_params
-            params.require(:excretion).permit(:name,:time)
-        end
+    def user_params
+      params.permit(:name)
+    end
 end

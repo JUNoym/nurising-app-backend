@@ -27,5 +27,5 @@ SAMPLE_USERS = [
   ]
   
   SAMPLE_USERS.each do |user|
-    Excretion.create(user)
+    User.create(user)
   end
