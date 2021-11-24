@@ -8,7 +8,15 @@ class Api::V1::UserCareActionsController < ApplicationController
     puts user
     user_care_action = user.user_care_action.new(user_id:user.id,care_action_id:care_action.id)
     if user_care_action.save!
-      render json: user_care_action
+      care_actions = user.care_action
+      render json: care_actions
     end
   end
+
+  def fetch_care_actions_by_user
+    user = User.find(params[:id])
+    care_actions = user.care_action
+    render json: {care_actions:care_actions}
+  end
+
 end
