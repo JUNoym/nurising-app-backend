@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
+      resources :users
+      resources :user_care_actions
+      resources :care_actions
       delete '/todos/destroy_all', to: 'todos#destroy_all'
       resources :todos
-      post '/excretion/push_time', to: 'excretion#push_time'
-      delete '/excretion/destroy_all', to: 'excretion#destroy_all'
       resources :excretion
     end
   end
