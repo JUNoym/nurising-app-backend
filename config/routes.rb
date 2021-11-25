@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
+      delete '/users/destroy_all', to: 'users#destroy_all'
       resources :users do
         member do
           get "care_actions", to: 'user_care_actions#fetch_care_actions_by_user'
         end
-        delete '/users/destroy_all', to: 'users#destroy_all'
       end
       
       
