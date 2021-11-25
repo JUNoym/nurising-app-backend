@@ -46,15 +46,7 @@ class Api::V1::UsersController < ApplicationController
         end
    end
 
-   def push_time
-    render json: {message: "ok"}
-    time = User.new(user_params)
-    if time.save
-        render json: time
-    else
-        render json: {message: "エラー出てるよ"}
-    end
-   end
+ 
 
    
     private
