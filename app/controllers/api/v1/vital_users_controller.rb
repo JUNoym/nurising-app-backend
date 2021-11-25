@@ -49,5 +49,4 @@ class Api::V1::VitalUsersController < ApplicationController
         def vital_user_param
           params.permit(:name)
         end
-        # テスト
 end
