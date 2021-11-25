@@ -7,6 +7,16 @@ class Api::V1::UserCareActionsController < ApplicationController
     render json: res
   end
 
+  def destroy_all
+    users = User.all
+    if users.destroy_all
+      render json: {message: "削除完了"}
+    else
+      render json: {message: "エラー出てるよ"}
+    end
+
+  end
+
   def create
     care_action = CareAction.find(params[:care_action_id])
 

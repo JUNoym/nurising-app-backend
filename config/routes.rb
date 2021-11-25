@@ -5,8 +5,11 @@ Rails.application.routes.draw do
         member do
           get "care_actions", to: 'user_care_actions#fetch_care_actions_by_user'
         end
+        delete '/users/destroy_all', to: 'users#destroy_all'
       end
-
+      
+      
+      delete '/user_care_actions/destroy_all', to: 'user_care_actions#destroy_all'
       resources :user_care_actions
       resources :care_actions
 
