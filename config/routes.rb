@@ -7,6 +7,10 @@ Rails.application.routes.draw do
           get "care_actions", to: 'user_care_actions#fetch_care_actions_by_user'
         end
       end
+
+      delete '/vital_users/destroy_all', to: 'vital_users#destroy_all'
+      resources :vital_users
+      resources :vital_contents
       
       
       delete '/user_care_actions/destroy_all', to: 'user_care_actions#destroy_all'
