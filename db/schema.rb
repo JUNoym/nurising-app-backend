@@ -42,11 +42,12 @@ ActiveRecord::Schema.define(version: 2021_11_25_211147) do
   end
 
   create_table "vital_contents", force: :cascade do |t|
-    t.integer "kt"
-    t.integer "bp"
-    t.integer "plus"
-    t.integer "spo2"
-    t.integer "Vital_User_id", null: false
+    t.string "kt"
+    t.string "bp"
+    t.string "plus"
+    t.string "spo2"
+    t.string "name"
+    t.integer "Vital_User_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["Vital_User_id"], name: "index_vital_contents_on_Vital_User_id"
@@ -54,6 +55,10 @@ ActiveRecord::Schema.define(version: 2021_11_25_211147) do
 
   create_table "vital_users", force: :cascade do |t|
     t.string "name"
+    t.string "kt"
+    t.string "bp"
+    t.string "plus"
+    t.string "spo2"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

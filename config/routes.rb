@@ -10,7 +10,9 @@ Rails.application.routes.draw do
 
       delete '/vital_users/destroy_all', to: 'vital_users#destroy_all'
       resources :vital_users
+      delete '/vital_contents/destroy_all', to: 'vital_contents#destroy_all'
       resources :vital_contents
+      
       
       
       delete '/user_care_actions/destroy_all', to: 'user_care_actions#destroy_all'

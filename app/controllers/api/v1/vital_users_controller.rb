@@ -47,6 +47,6 @@ class Api::V1::VitalUsersController < ApplicationController
     private
 
         def vital_user_param
-          params.permit(:name)
+          params.permit(:name, :kt, :bp, :plus, :spo2, :vital_user)
         end
 end
