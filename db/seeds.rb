@@ -29,3 +29,19 @@ SAMPLE_USERS = [
   SAMPLE_USERS.each do |user|
     User.create(user)
   end
+
+  SAMPLE_ACTIONS = [
+    {
+      name: '排便💩',
+    },
+    {
+      name: '排尿💦'
+    },
+    {
+      name: 'パッド交換🩲',
+    }
+  ]
+
+  SAMPLE_ACTIONS.each do |action|
+    CareAction.create(action)
+  end
