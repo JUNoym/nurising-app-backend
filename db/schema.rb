@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_25_211147) do
+ActiveRecord::Schema.define(version: 2021_11_25_210633) do
 
   create_table "care_actions", force: :cascade do |t|
     t.string "name"
@@ -41,18 +41,6 @@ ActiveRecord::Schema.define(version: 2021_11_25_211147) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "vital_contents", force: :cascade do |t|
-    t.string "kt"
-    t.string "bp"
-    t.string "plus"
-    t.string "spo2"
-    t.string "name"
-    t.integer "Vital_User_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["Vital_User_id"], name: "index_vital_contents_on_Vital_User_id"
-  end
-
   create_table "vital_users", force: :cascade do |t|
     t.string "name"
     t.string "kt"
@@ -65,5 +53,4 @@ ActiveRecord::Schema.define(version: 2021_11_25_211147) do
 
   add_foreign_key "user_care_actions", "care_actions"
   add_foreign_key "user_care_actions", "users"
-  add_foreign_key "vital_contents", "Vital_Users"
 end
