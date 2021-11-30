@@ -7,8 +7,8 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins ['https://nursing-app-frontend3-2oag28d31-junoym.vercel.app/', "https://nursing-app-frontend-fu1mdcx4i-junoym.vercel.app/",'http://localhost:8080']
-    
+    # origins ['https://nursing-app-frontend3-2oag28d31-junoym.vercel.app/', "https://nursing-app-frontend-fu1mdcx4i-junoym.vercel.app/",'http://localhost:8080']
+    origins '*'
     resource '*',
       headers: :any,
       methods: [:get, :post, :put, :patch, :delete, :options, :head]
