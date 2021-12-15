@@ -1,20 +1,17 @@
 class Api::V1::UserCareActionsController < ApplicationController
   def index
     users = User.all
-    res = users.map{ |user|
+    response = users.map{ |user|
       # user_idに紐づく中間テーブル（UserCareAction）の一覧を取得
       user_care_actions = UserCareAction.where(user_id:user.id)
-      result = user_care_actions.map{ |action|
+      care_actions = user_care_actions.map{ |action|
         # UserCareActionそれぞれについて、care_action_idから、CareActionの情報を取得
         care_action = CareAction.find(action.care_action_id)
-        # ↑で取得したCareActionのtimestampはシードが作られた時間になるので、中間テーブルの時間で上書き
-        care_action.created_at = action.created_at
-        care_action.updated_at = action.updated_at
-        next care_action
+        next {"id" => care_action.id, "title" => care_action.name, "registered_at" => action.updated_at}
       }
-      next {"user_name"=>user.name,"user_id"=>user.id,"care_actions"=>result}
+      next {"user_name"=>user.name,"user_id"=>user.id,"care_actions"=>care_actions}
     }
-    render json: res
+    render json: {"user_care_actions" => response}
   end
 
   def destroy_all
