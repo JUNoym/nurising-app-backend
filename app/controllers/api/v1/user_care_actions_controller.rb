@@ -7,7 +7,6 @@ class Api::V1::UserCareActionsController < ApplicationController
       care_actions = user_care_actions.map{ |action|
         # UserCareActionそれぞれについて、care_action_idから、CareActionの情報を取得
         care_action = CareAction.find(action.care_action_id)
-        # ↑で取得したCareActionのtimestampはシードが作られた時間になるので、中間テーブルの時間で上書き
         next {"id" => care_action.id, "title" => care_action.name, "registered_at" => action.updated_at}
       }
       next {"user_name"=>user.name,"user_id"=>user.id,"care_actions"=>care_actions}
