@@ -32,13 +32,13 @@ SAMPLE_USERS = [
 
   SAMPLE_ACTIONS = [
     {
-      name: '排便💩',
+      name: '排便',
     },
     {
-      name: '排尿💦'
+      name: '排尿'
     },
     {
-      name: 'パッド交換🩲',
+      name: 'パッド交換',
     },
     {
       name: '失禁',
