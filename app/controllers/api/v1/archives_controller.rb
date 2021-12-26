@@ -5,11 +5,14 @@ class Api::V1::ArchivesController < ApplicationController
         render json: {excretion_user:excretion_user, vital_user:vital_user}
     end
 
-    # 日付で検索
     def search
-        @create_at = params[:created_at]
-        @vital_user = VitalUser.where(["created_at LIKE ? ", "%#{create_at}%"])
-        render json: @create_at
+      type = params[:type]
+      case type
+      when "name" then
+        search_user_by_name
+      when "date" then
+        search_by_date
+      end
     end
 
     private
