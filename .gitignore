@@ -12,6 +12,8 @@ vendor/bundle
 /db/*.sqlite3
 /db/*.sqlite3-*
 
+.idea
+
 # Ignore all logfiles and tempfiles.
 /log/*
 /tmp/*
