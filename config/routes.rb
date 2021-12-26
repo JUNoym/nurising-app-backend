@@ -22,6 +22,11 @@ Rails.application.routes.draw do
       delete '/todos/destroy_all', to: 'todos#destroy_all'
       resources :todos
       resources :excretion
+
+      get 'archives/search', to: 'archives#search'
+      get 'archives/search_name', to: 'archives#search_name'
+      resources :archives
+
     end
   end
 end
