@@ -5,19 +5,21 @@ class Api::V1::ArchivesController < ApplicationController
         render json: {excretion_user:excretion_user, vital_user:vital_user}
     end
 
-    # 日付で検索
     def search
-        @create_at = params[:created_at]
-        @vital_user = VitalUser.where(["created_at LIKE ? ", "%#{create_at}%"])
-        render json: @create_at
+      type = params[:type]
+      case type
+      when "name" then
+        search_user_by_name
+      when "date" then
+        search_by_date
+      end
     end
 
-
-    # localhost:3030/api/v1/archives/search_name?name=磯村
-    def search_name
-        @vital_user = VitalUser.where("name LIKE ?", "%#{params[:name]}%")
-        users = User.where(["name LIKE ? ", "%#{params[:name]}%"])
-        response = users.map{ |user|
+    private
+    def search_user_by_name
+        vital_users = VitalUser.where("name LIKE ?", "%#{params[:q]}%")
+        users = User.where(["name LIKE ? ", "%#{params[:q]}%"])
+        excretion_users = users.map{ |user|
             user_care_actions = UserCareAction.where(user_id:user.id)
             care_actions = user_care_actions.map{ |action|
                 care_action = CareAction.find(action.care_action_id)
@@ -25,7 +27,33 @@ class Api::V1::ArchivesController < ApplicationController
             }
             next {"user_name"=>user.name,"user_id"=>user.id,"care_actions"=>care_actions}
         }
-        @excretion_user = response
-        render json: {vital_user:@vital_user, excretion_user:@excretion_user}
+
+        response = [] #user_id,user_name,info
+        response = vital_users.map{ |vital_user|
+            {"type"=>"vital","user_name"=>vital_user.name,"info":{"kt"=>vital_user.kt,"bp"=>vital_user.bp,"plus"=>vital_user.plus,"spo2"=>vital_user.spo2}}
+        }
+        puts excretion_users
+        response += excretion_users.map{ |excretion_user|
+            {"type"=>"excretion","user_name"=>excretion_user["user_name"],"info":{"care_actions"=> excretion_user["care_actions"]}}
+        }
+
+        render json: {result:response}
+    end
+
+    def search_by_date
+        query_time = Time.parse(params[:q])
+        day = query_time.all_day
+        vital_users = VitalUser.where(created_at: day)
+        user_care_actions = UserCareAction.where(created_at: day)
+        excretion_users = user_care_actions.map {|care_action|
+            user = care_action.user
+            next {"type":"excretion",user_name:user.name,info:{"care_actions"=>[care_action]}}
+        }
+        response = []
+        response = vital_users.map{ |vital_user|
+            {"type"=>"vital","user_name"=>vital_user.name,"info":{"kt"=>vital_user.kt,"bp"=>vital_user.bp,"plus"=>vital_user.plus,"spo2"=>vital_user.spo2}}
+        }
+        response += excretion_users
+        render json: {result:response}
     end
 end
