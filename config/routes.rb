@@ -23,7 +23,8 @@ Rails.application.routes.draw do
       resources :todos
       resources :excretion
 
-      get 
+      get 'archives/search', to: 'archives#search'
+      get 'archives/search_name', to: 'archives#search_name'
       resources :archives
 
     end
