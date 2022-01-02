@@ -1,6 +1,7 @@
 class Api::V1::VitalUsersController < ApplicationController
     def index
         vital_user = VitalUser.where(created_at: Time.now.all_day)
+        binding.pry
         render json: vital_user
     end
 

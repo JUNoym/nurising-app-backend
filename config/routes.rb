@@ -26,9 +26,7 @@ Rails.application.routes.draw do
       get 'archives/search', to: 'archives#search'
       resources :archives
 
-      # get 'today_data/get_today_vital_data', to: 'today_data#get_today_vital_data'
-      # get 'today_data/get_today_excretion_data', to: 'today_data#get_today_excretion_data'
-      # resources :today_data
+   
 
     end
   end
