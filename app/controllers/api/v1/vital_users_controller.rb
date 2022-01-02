@@ -1,9 +1,9 @@
 class Api::V1::VitalUsersController < ApplicationController
     def index
-        # vital_user = VitalUser.where(created_at: Time.now.all_day)
-        # render json: vital_user
-        vital_user = VitalUser.all
+        vital_user = VitalUser.where("created_at >= ?", Date.today)
         render json: vital_user
+        # vital_user = VitalUser.all
+        # render json: vital_user
     end
 
     def create
