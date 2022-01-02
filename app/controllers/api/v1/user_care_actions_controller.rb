@@ -1,6 +1,6 @@
 class Api::V1::UserCareActionsController < ApplicationController
   def index
-    users = User.all
+    users = User.where(created_at: Time.now.all_day)
     response = users.map{ |user|
       # user_idに紐づく中間テーブル（UserCareAction）の一覧を取得
       user_care_actions = UserCareAction.where(user_id:user.id)
