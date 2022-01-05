@@ -4,10 +4,10 @@ class ApplicationController < ActionController::API
     # Railsフォームからコントローラへと送信されるパラメータの中に追加される
     # セキュリティートークンのことですが、ここでは使用しないのでスキップさせます。
     
-    skip_before_action :verify_authenticity_token
-    protect_from_forgery
+    # skip_before_action :verify_authenticity_token
+    # protect_from_forgery
 
-    helper_method :login!, :current_user
+    # helper_method :login!, :current_user
 
     def login!
         session[:user_id] = @user.id
