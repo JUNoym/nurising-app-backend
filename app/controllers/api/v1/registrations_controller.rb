@@ -1,6 +1,9 @@
 class  Api::V1::RegistrationsController < ApplicationController
 
-
+    def index
+        @user = Login.all
+        render json: @user
+    end
     
     def signup
         @user = Login.new(registrations_params)
