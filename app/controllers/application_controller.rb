@@ -1,9 +1,4 @@
 class ApplicationController < ActionController::API
-    # Railsが認証トークンを使用しないようにする。
-    # 認証トークンというのは、CSRF攻撃を防ぐために、
-    # Railsフォームからコントローラへと送信されるパラメータの中に追加される
-    # セキュリティートークンのことですが、ここでは使用しないのでスキップさせます。
-    
     # skip_before_action :verify_authenticity_token
     # protect_from_forgery
 

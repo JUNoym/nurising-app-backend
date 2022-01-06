@@ -26,9 +26,9 @@ Rails.application.routes.draw do
       get 'archives/search', to: 'archives#search'
       resources :archives
 
-      resources :registrations, only: [:index]
-      post '/registrations', to: 'registrations#signup'
-      post '/login', to: 'sessions#login'
+      # resources :registrations, only: [:index]
+      # post '/registrations', to: 'registrations#signup'
+      # post '/login', to: 'sessions#login'
       # delete '/logout', to: 'sessions#logout'
       # get '/logged_in', to: 'sessions#logged_in?'
 
