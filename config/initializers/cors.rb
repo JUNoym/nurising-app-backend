@@ -17,7 +17,8 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
 
   # 本番環境
   allow do
-    origins 'https://nursing-app-frontend3.vercel.app/'
+    # origins 'https://nursing-app-frontend3.vercel.app/'
+     origins '*'
 
     resource '*',
         headers: :any,
