@@ -1,6 +1,6 @@
 class Api::V1::VitalUsersController < ApplicationController
     def index
-        vital_user = VitalUser.where("created_at >= ?", Date.today)
+        vital_user = VitalUser.where(created_at: Time.now.all_day)
         render json: vital_user
         # vital_user = VitalUser.all
         # render json: vital_user
@@ -49,6 +49,6 @@ class Api::V1::VitalUsersController < ApplicationController
     private
 
         def vital_user_param
-          params.permit(:name, :kt, :bp, :plus, :spo2, :vital_user)
+          params.permit(:name, :kt, :bp, :plus, :spo2)
         end
 end
