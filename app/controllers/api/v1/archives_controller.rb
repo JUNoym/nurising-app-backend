@@ -30,7 +30,10 @@ class Api::V1::ArchivesController < ApplicationController
 
         response = [] #user_id,user_name,info
         response = vital_users.map{ |vital_user|
-            {"type"=>"vital","user_name"=>vital_user.name,"info":{"kt"=>vital_user.kt + "°C","bp"=>vital_user.bp + "bp","plus"=>vital_user.plus + "/m","spo2"=>vital_user.spo2 + "%", "registered_at" => vital_user.created_at}}
+            {"type"=>"vital","user_name"=>vital_user.name,
+                "info":{"kt"=>vital_user.kt + "°C","bp"=>vital_user.bp + "bp","plus"=>vital_user.plus + "/m","spo2"=>vital_user.spo2 + "%"},
+                "time" => vital_user.created_at
+            }
         }
         response += excretion_users.map{ |excretion_user|
             {"type"=>"excretion","user_name"=>excretion_user["user_name"],"info":{"care_actions"=> excretion_user["care_actions"]}}
@@ -47,7 +50,10 @@ class Api::V1::ArchivesController < ApplicationController
         # バイタルデータを絞り込み
         vital_users = VitalUser.where(created_at: day)
         response = vital_users.map{ |vital_user|
-            {"type"=>"vital","user_name"=>vital_user.name,"info":{"kt"=>vital_user.kt + "°C","bp"=>vital_user.bp + "bp","plus"=>vital_user.plus + "/m","spo2"=>vital_user.spo2 + "%", "registered_at" => vital_user.created_at}}
+            {"type"=>"vital","user_name"=>vital_user.name,
+                "info":{"kt"=>vital_user.kt + "°C","bp"=>vital_user.bp + "bp","plus"=>vital_user.plus + "/m","spo2"=>vital_user.spo2 + "%"},
+                "time" => vital_user.created_at
+            }
         }
 
         # 排泄データを絞り込み
