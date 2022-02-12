@@ -8,6 +8,8 @@ class Api::V1::RegisterStaffsController < ApplicationController
         user = RegisterStaff.new(user_param)
         user.save
         render json: { status: 201, user: user }
+      rescue StandardError
+        render json: { status: 422 }
     end
 
     private
