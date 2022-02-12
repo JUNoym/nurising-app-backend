@@ -1,0 +1,2 @@
+class RegisterStaff < ApplicationRecord
+end
