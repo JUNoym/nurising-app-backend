@@ -26,6 +26,7 @@ Rails.application.routes.draw do
       get 'archives/search', to: 'archives#search'
       resources :archives
 
+      resources :register_staffs
     
 
     end
