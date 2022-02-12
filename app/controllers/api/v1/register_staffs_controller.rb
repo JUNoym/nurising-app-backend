@@ -7,7 +7,7 @@ class Api::V1::RegisterStaffsController < ApplicationController
     def create
         user = RegisterStaff.new(user_param)
         user.save
-        render json: user
+        render json: { status: 201, user: user }
     end
 
     private
