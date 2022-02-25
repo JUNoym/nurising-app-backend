@@ -1,4 +1,5 @@
 class Api::V1::RegisterStaffsController < ApplicationController
+    # エンドポイント　http://localhost:3030/api/v1/register_staffs
     def index
         user = RegisterStaff.all
         render json: user
