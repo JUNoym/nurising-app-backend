@@ -13,6 +13,14 @@ class Api::V1::RegisterStaffsController < ApplicationController
         render json: { status: 422 }
     end
 
+    def destroy
+        if RegisterStaff.destroy(params[:id])
+            head :no_content
+        else
+            render json: { message: "エラー出てるよ" }
+        end
+    end
+
     private
         def user_param
             params.permit(
