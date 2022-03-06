@@ -21,6 +21,15 @@ class Api::V1::RegisterStaffsController < ApplicationController
         end
     end
 
+    def update_status
+        user = RegisterStaff.find(params[:id])
+        if user.update(have_work: params[:have_work])
+            render json: user
+        else
+            render json: {message: "エラー出てるよ"}
+        end
+    end
+
     private
         def user_param
             params.permit(
