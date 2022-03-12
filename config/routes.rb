@@ -28,6 +28,8 @@ Rails.application.routes.draw do
 
       put 'register_staffs/update_status', to: 'register_staffs#update_status'
       resources :register_staffs
+      resources :auth_users
+      resources :sessions
     
 
     end
