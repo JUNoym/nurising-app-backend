@@ -25,6 +25,8 @@ gem 'rack-cors'
 # 認証
 gem 'firebase-auth-rails'
 gem 'bcrypt',   '3.1.13'
+gem "devise"
+gem "devise_token_auth"
 
 
 group :development, :test do
