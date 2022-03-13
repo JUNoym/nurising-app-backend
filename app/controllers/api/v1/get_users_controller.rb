@@ -9,4 +9,9 @@ class Api::V1::GetUsersController < ApplicationController
       }
     }, status: 200
   end
+
+  def me
+    user = DeviseUser.find(params[:id])
+    render json: user
+  end
 end

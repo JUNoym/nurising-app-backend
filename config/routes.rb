@@ -32,6 +32,7 @@ Rails.application.routes.draw do
       resources :register_staffs
       resources :auth_users
       resources :sessions
+      get 'get_users/me', to: 'get_users#me'
       resources :get_users
 
     end
