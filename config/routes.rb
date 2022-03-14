@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
+  mount_devise_token_auth_for 'DeviseUser', at: 'auth'
   namespace :api do
     namespace :v1 do
+      mount_devise_token_auth_for "DeviseUser", at: "auth"
       delete '/users/destroy_all', to: 'users#destroy_all'
       resources :users do
         member do
@@ -30,7 +32,8 @@ Rails.application.routes.draw do
       resources :register_staffs
       resources :auth_users
       resources :sessions
-    
+      get 'get_users/me', to: 'get_users#me'
+      resources :get_users
 
     end
   end
