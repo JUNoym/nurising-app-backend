@@ -34,7 +34,7 @@ Rails.application.routes.draw do
       resources :sessions
       get 'get_users/me', to: 'get_users#me'
       resources :get_users
-
+      resources :chats
     end
   end
 end
